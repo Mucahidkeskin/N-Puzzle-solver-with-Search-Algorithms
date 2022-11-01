@@ -1,5 +1,5 @@
 class State:
-    goal = [1, 2, 3, 4, 5, 6, 7, 8, 0] 
+    goal = []
     #this should be changed manually based on n 
     #e.g. it should be [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0] if n is 4.
     
@@ -11,6 +11,12 @@ class State:
         self.parent = parent
         self.direction = direction
         self.depth = depth
+        if(len(self.goal)<len(self.state)):
+            for i in range(1, len(self.state)):
+                self.goal.append(i)
+            self.goal.append(0)
+            print(self.goal)
+
 
         if parent:
             self.cost = parent.cost + cost
@@ -18,8 +24,7 @@ class State:
         else:
             self.cost = cost
 
-            
-            
+
     def test(self): #check if the given state is goal
         if self.state == self.goal:
             return True
